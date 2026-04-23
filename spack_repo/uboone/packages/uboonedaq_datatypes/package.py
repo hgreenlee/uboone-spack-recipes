@@ -19,7 +19,8 @@ class UboonedaqDatatypes(CMakePackage):
     version("master", branch="master")
     version("09.78.03cm1", sha256="f5789f0aee389a14823575cb0178d1a78fbadae6aa59bbc00408e7885f9923fa")
 
-    depends_on("cmake@2.8:", type="build")
+    depends_on("cmake", type="build")
+    depends_on("cetmodules", type="build")
     depends_on("cxx", type="build")
     depends_on("boost", type=("build", "link", "run"))
     depends_on("openssl", type=("build", "link", "run"))

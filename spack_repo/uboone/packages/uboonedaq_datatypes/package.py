@@ -11,13 +11,13 @@ class UboonedaqDatatypes(CMakePackage):
     """MicroBooNE DAQ data format structures and utility executables."""
 
     homepage = "https://github.com/uboone/uboonedaq_datatypes"
-    url = "https://github.com/uboone/uboonedaq_datatypes/archive/refs/tags/v09_78_03cm1.tar.gz"
+    url = "https://github.com/uboone/uboonedaq_datatypes/archive/refs/tags/v6_22_07.tar.gz"
     git = "https://github.com/uboone/uboonedaq_datatypes.git"
 
     license("UNKNOWN")
 
     version("master", branch="master")
-    version("09.78.03cm1", sha256="f5789f0aee389a14823575cb0178d1a78fbadae6aa59bbc00408e7885f9923fa")
+    version("6.22.07", sha256="95a722920a24b96d7fcc46d6a542df19a064b206f543b4ed270879d025655e2d")
 
     depends_on("cmake", type="build")
     depends_on("cetmodules", type="build")

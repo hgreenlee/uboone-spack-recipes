@@ -35,6 +35,14 @@ class UboonedaqDatatypes(CMakePackage):
         description="Use the specified C++ standard when building.",
     )
 
+
+    def patch(self):
+        filter_file("find_package\(OpenMP REQUIRED\)"
+                "find_package(OpenMP REQUIRED EXPORT)",
+                "CMakeLists.txt"
+                )
+
+
     def cmake_args(self):
         args = [
             self.define_from_variant("CMAKE_CXX_STANDARD", "cxxstd"),

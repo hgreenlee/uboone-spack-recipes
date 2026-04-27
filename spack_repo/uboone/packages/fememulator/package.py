@@ -30,6 +30,7 @@ class Fememulator(CMakePackage):
         description="Use the specified C++ standard when building.",
     )
 
+    @cmake_preset
     def cmake_args(self):
         args = [
             self.define_from_variant("CMAKE_CXX_STANDARD", "cxxstd"),

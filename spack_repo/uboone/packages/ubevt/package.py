@@ -6,6 +6,7 @@ from spack_repo.builtin.build_systems.cmake import CMakePackage
 
 from spack.package import *
 
+from spack_repo.fnal_art.packages.fnal_github_package.package import *
 
 class Ubevt(CMakePackage):
     """MicroBooNE event-level reconstruction and utility plugins."""
@@ -54,6 +55,7 @@ class Ubevt(CMakePackage):
         description="Use the specified C++ standard when building.",
     )
 
+    @cmake_preset
     def cmake_args(self):
         args = [
             self.define_from_variant("CMAKE_CXX_STANDARD", "cxxstd"),

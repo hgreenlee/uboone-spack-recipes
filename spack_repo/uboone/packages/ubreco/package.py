@@ -56,6 +56,7 @@ class Ubreco(CMakePackage):
                 "install(FILES ${txt_file} DESTINATION ${ubreco_FW_DIR})",
                 *cmakefiles)
 
+    @cmake_preset
     def cmake_args(self):
         args = [
             self.define_from_variant("CMAKE_CXX_STANDARD", "cxxstd"),

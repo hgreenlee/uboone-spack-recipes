@@ -52,11 +52,6 @@ class Ubraw(CMakePackage):
         description="Use the specified C++ standard when building.",
     )
 
-    def patch(self):
-        filter_file("find_package\( uboonedaq_datatypes REQUIRED EXPORT \)",
-                "find_package( OpenMP REQUIRED )\nfind_package( uboonedaq_datatypes REQUIRED EXPORT )",
-                "CMakeLists.txt" )
-
     def cmake_args(self):
         args = [
             self.define_from_variant("CMAKE_CXX_STANDARD", "cxxstd"),

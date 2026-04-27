@@ -27,6 +27,7 @@ class Ubcv(CMakePackage, FnalGithubPackage):
     depends_on("larfinder", type="build")
 
     depends_on("larevt", type=("build", "link", "run"))
+    depends_on("larcv2", type=("build", "link", "run"))
     depends_on("nusimdata", type=("build", "link", "run"))
     depends_on("ubevt", type=("build", "link", "run"))
     depends_on("ubreco", type=("build", "link", "run"))

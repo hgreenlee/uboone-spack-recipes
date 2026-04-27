@@ -50,6 +50,11 @@ class Ubreco(CMakePackage):
         filter_file("cet_cmake_env\(\)",
                 'cet_cmake_env()\nset(ubreco_FW_DIR, "scripts")',
                 "CMakeLists.txt")
+        cmakefiles = [ "ubreco/BlipReco/CMakeLists.txt",
+                "ubreco/MicroBooNEPandora/scripts/CMakeLists.txt"]
+        filter_file("install_fw\(LIST ${txt_file}\)",
+                "install(FILES ${txt_file} DESTINATION ${ubreco_FW_DIR})",
+                *cmakefiles)
 
     def cmake_args(self):
         args = [

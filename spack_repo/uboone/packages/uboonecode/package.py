@@ -8,7 +8,7 @@ from spack.package import *
 
 from spack_repo.fnal_art.packages.fnal_github_package.package import *
 
-class Uboonecode(CMakePackage):
+class Uboonecode(CMakePackage, FnalGithubPackage):
     """MicroBooNE top-level configuration and FHiCL tools package."""
 
     homepage = "https://github.com/uboone/uboonecode"

@@ -7,7 +7,7 @@ from spack_repo.builtin.build_systems.cmake import CMakePackage
 from spack.package import *
 
 
-class UboonedaqDatatypes(CMakePackage):
+class UboonedaqDatatypes(CMakePackage, FnalGithubPackage):
     """MicroBooNE DAQ data format structures and utility executables."""
 
     homepage = "https://github.com/uboone/uboonedaq_datatypes"

@@ -8,7 +8,7 @@ from spack.package import *
 
 from spack_repo.fnal_art.packages.fnal_github_package.package import *
 
-class Ubcrt(CMakePackage):
+class Ubcrt(CMakePackage, FnalGithubPackage):
     """MicroBooNE CRT reconstruction and filtering modules."""
 
     homepage = "https://github.com/uboone/ubcrt"

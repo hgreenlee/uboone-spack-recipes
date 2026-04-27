@@ -8,7 +8,7 @@ from spack.package import *
 
 from spack_repo.fnal_art.packages.fnal_github_package.package import *
 
-class Ubreco(CMakePackage):
+class Ubreco(CMakePackage, FnalGithubPackage):
     """MicroBooNE reconstruction modules."""
 
     homepage = "https://github.com/uboone/ubreco"
@@ -63,7 +63,6 @@ class Ubreco(CMakePackage):
             self.define_from_variant("CMAKE_CXX_STANDARD", "cxxstd"),
             self.define("CMAKE_MODULE_PATH", "%s/Modules;%s/Modules" %
                        (self.spec['nufinder'].prefix, self.spec['larfinder'].prefix)),
-            '--presets', 'default',
         ] 
         return args
 

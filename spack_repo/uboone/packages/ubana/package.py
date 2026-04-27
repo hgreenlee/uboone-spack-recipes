@@ -8,7 +8,7 @@ from spack.package import *
 
 from spack_repo.fnal_art.packages.fnal_github_package.package import *
 
-class Ubana(CMakePackage):
+class Ubana(CMakePackage, FnalGithubPackage):
     """MicroBooNE analysis modules."""
 
     homepage = "https://github.com/uboone/ubana"

@@ -4,7 +4,7 @@ from spack.package import *
 
 from spack_repo.fnal_art.packages.fnal_github_package.package import *
 
-class Ubobj(CMakePackage):
+class Ubobj(CMakePackage, FnalGithubPackage):
     """MicroBooNE event data object definitions."""
 
     homepage = "https://github.com/uboone/ubobj"

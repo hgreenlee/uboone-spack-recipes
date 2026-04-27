@@ -8,7 +8,7 @@ from spack.package import *
 
 from spack_repo.fnal_art.packages.fnal_github_package.package import *
 
-class Ubcore(CMakePackage):
+class Ubcore(CMakePackage, FnalGithubPackage):
     """MicroBooNE framework plugins and core reconstruction utilities."""
 
     homepage = "https://github.com/uboone/ubcore"

@@ -8,7 +8,7 @@ from spack.package import *
 
 from spack_repo.fnal_art.packages.fnal_github_package.package import *
 
-class Ubraw(CMakePackage):
+class Ubraw(CMakePackage, FnalGithubPackage):
     """MicroBooNE raw data handling and DAQ input modules."""
 
     homepage = "https://github.com/uboone/ubraw"

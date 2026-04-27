@@ -8,7 +8,7 @@ from spack.package import *
 
 from spack_repo.fnal_art.packages.fnal_github_package.package import *
 
-class Ubsim(CMakePackage):
+class Ubsim(CMakePackage, FnalGithubPackage):
     """MicroBooNE detector simulation and event-weighting modules."""
 
     homepage = "https://github.com/uboone/ubsim"

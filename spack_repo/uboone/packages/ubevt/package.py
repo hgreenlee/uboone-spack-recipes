@@ -8,7 +8,7 @@ from spack.package import *
 
 from spack_repo.fnal_art.packages.fnal_github_package.package import *
 
-class Ubevt(CMakePackage):
+class Ubevt(CMakePackage, FnalGithubPackage):
     """MicroBooNE event-level reconstruction and utility plugins."""
 
     homepage = "https://github.com/uboone/ubevt"

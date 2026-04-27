@@ -6,6 +6,7 @@ from spack_repo.builtin.build_systems.cmake import CMakePackage
 
 from spack.package import *
 
+from spack_repo.fnal_art.packages.fnal_github_package.package import *
 
 class Ubreco(CMakePackage):
     """MicroBooNE reconstruction modules."""

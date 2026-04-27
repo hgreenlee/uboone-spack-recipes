@@ -6,6 +6,7 @@ from spack_repo.builtin.build_systems.cmake import CMakePackage
 
 from spack.package import *
 
+from spack_repo.fnal_art.packages.fnal_github_package.package import *
 
 class Ubraw(CMakePackage):
     """MicroBooNE raw data handling and DAQ input modules."""
@@ -56,7 +57,7 @@ class Ubraw(CMakePackage):
         filter_file("find_package\( uboonedaq_datatypes REQUIRED EXPORT \)",
                 "find_package( OpenMP REQUIRED )\nfind_package( uboonedaq_datatypes REQUIRED EXPORT )",
                 "CMakeLists.txt" )
-
+    @cmake_preset
     def cmake_args(self):
         args = [
             self.define_from_variant("CMAKE_CXX_STANDARD", "cxxstd"),

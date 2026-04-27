@@ -55,14 +55,5 @@ class Ubobj(CMakePackage, FnalGithubPackage):
     )
 
 
-    def cmake_args(self):
-        args = [
-            self.define_from_variant("CMAKE_CXX_STANDARD", "cxxstd"),
-            self.define("CMAKE_MODULE_PATH", "%s/Modules;%s/Modules" %
-                       (self.spec['nufinder'].prefix, self.spec['larfinder'].prefix)),
-        ] 
-        return args
-
-
     def url_for_version(self, version):
         return f"https://github.com/uboone/ubobj/archive/refs/tags/v{str(version).replace('.', '_')}.tar.gz"

@@ -51,7 +51,7 @@ class Larcv(MakefilePackage):
         mkdirp(join_path(self.stage.source_path, "build", "lib"))
         mkdirp(join_path(self.stage.source_path, "build", "bin"))
         mkdirp(join_path(self.stage.source_path, "build", "include"))
-        env.prepend_path("PATH", join_path(self.stage.source.path, "bin"))
+        env.prepend_path("PATH", join_path(self.stage.source_path, "bin"))
 
     def build(self, spec, prefix):
         make()

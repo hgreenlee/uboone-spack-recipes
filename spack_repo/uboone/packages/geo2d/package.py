@@ -19,6 +19,7 @@ class Geo2d(CMakePackage):
     version("2.me.06.03.prod.01", commit="ff2a2d13d7fa19d1a50d0a9b81df091095a92305")
 
     depends_on("cmake@3.10:", type="build")
+    depends_on("c", type="build")
     depends_on("cxx", type="build")
     depends_on("root", type=("build", "link", "run"))
     depends_on("opencv", type=("build", "link", "run"))

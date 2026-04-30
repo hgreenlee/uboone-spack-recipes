@@ -1,11 +1,12 @@
 # Copyright Spack Project Developers. See COPYRIGHT file for details.
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
+from spack_repo.builtin.build_systems.makefile import MakefilePackage
 
 from spack.package import *
 
 
-class Ubdl(Package):
+class Ubdl(MakefilePackage):
     """MicroBooNE deep-learning reconstruction chain meta-repository."""
 
     homepage = "https://github.com/LArbys/ubdl"
@@ -14,9 +15,12 @@ class Ubdl(Package):
 
     license("UNKNOWN")
 
-    version("trunk", branch="master")
-    version("2.me.06.03.prod.01", sha256="b12086b090b0a50d1e343dbb5fe46c9f02ddd698dd264390a4101be31673dd79")
+    phases = ("build", "install")
 
+    version("trunk", branch="master")
+    version("2.me.06.03.prod.01", tag="v2_me_06_03_prod_01", submodules=True)
+
+    depends_on("c", type="build")
     depends_on("cxx", type="build")
     depends_on("python", type=("build", "run"))
     depends_on("root", type=("build", "link", "run"))
@@ -30,6 +34,9 @@ class Ubdl(Package):
     depends_on("py-pyzmq", type=("build", "run"))
     depends_on("larlite", type=("build", "link", "run"))
     depends_on("larcv", type=("build", "link", "run"))
+
+    def build(self, spec, prefix):
+        make()
 
     def install(self, spec, prefix):
         install_tree(self.stage.source_path, prefix)

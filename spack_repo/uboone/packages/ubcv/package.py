@@ -50,6 +50,8 @@ class Ubcv(CMakePackage, FnalGithubPackage):
         ] 
         return args
 
+    def setup_build_environment(self, env):
+        env.set("LARCV_LIBDIR", join_path(self.spec['larcv'].prefix, "build", "installed", "lib"))
 
     def url_for_version(self, version):
         return f"https://github.com/uboone/ubcv/archive/refs/tags/v{str(version).replace('.', '_')}.tar.gz"

@@ -54,8 +54,10 @@ class Larcv(Package):
         env.set("BOOST_INC", self.spec["boost"].prefix.include)
         env.set("BOOST_LIB", self.spec["boost"].prefix.lib)
 
-        env.set("OPENCV_INC", self.spec["opencv"].prefix.include)
-        env.set("OPENCV_LIB", self.spec["opencv"].prefix.lib)
+        env.set("OPENCV_INCDIR", self.spec["opencv"].prefix.include)
+        env.set("OPENCV_LIBDIR", self.spec["opencv"].prefix.lib)
+        env.set("LIBTORCH_INCDIR", self.spec["py-torch"].prefix.include)
+        env.set("LIBTORCH_LIBDIR", self.spec["py-torch"].prefix.lib)
 
         env.prepend_path("PATH", self.spec["root"].prefix.bin)
         env.prepend_path("PATH", self.spec["python"].prefix.bin)
@@ -71,7 +73,7 @@ class Larcv(Package):
         configure()
         with working_dir(join_path(self.stage.source_path, 'build')):
             cmake = Executable('cmake')
-            cmake('-DUSE_PYTHON3=ON', '%s' % self.stage.source_path )
+            cmake('-DUSE_PYTHON3=ON', '-DUSE_OPENCV=ON', '-DLARCV_ANN=ON', '%s' % self.stage.source_path )
             make()
             make('install')
 

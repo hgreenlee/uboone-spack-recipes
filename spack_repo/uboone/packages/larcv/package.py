@@ -73,6 +73,7 @@ class Larcv(Package):
             cmake = Executable('cmake')
             cmake('-DUSE_PYTHON3=ON', '%s' % self.stage.source_path )
             make()
+            make('install')
 
     def install(self, spec, prefix):
         install_tree(self.stage.source_path, prefix)

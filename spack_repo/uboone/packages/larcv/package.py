@@ -62,7 +62,7 @@ class Larcv(MakefilePackage):
 
     def build(self, spec, prefix):
         set_executable(join_path(self.stage.source_path, 'configure.sh'))
-        configure = Executable(join_path(self.stage.source_path, '/configure.sh'))
+        configure = Executable('%s/configure.sh' % self.stage.source_path)
         configure()
         with working_dir(join_path(self.stage.source_path, '%s/build')):
             make()

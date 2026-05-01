@@ -22,7 +22,7 @@ class Geo2d(Package):
     depends_on("c", type="build")
     depends_on("cxx", type="build")
     depends_on("root", type=("build", "link", "run"))
-    depends_on("opencv", type=("build", "link", "run"))
+    depends_on("opencv@:3", type=("build", "link", "run"))
     depends_on("python@3:", type=("build", "link", "run"))
     depends_on("py-numpy", type=("build", "run"))
 

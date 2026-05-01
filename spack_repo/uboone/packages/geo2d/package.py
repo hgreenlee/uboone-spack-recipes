@@ -53,8 +53,7 @@ class Geo2d(Package):
         env.prepend_path("PATH", join_path(self.stage.source_path, "bin"))
 
     def build(self, spec, prefix):
-        with working_dir(join_path(self.stage.source_path, 'build')):
-            make()
+        make('-j4')
 
     def install(self, spec, prefix):
         install_tree(self.stage.source_path, prefix)

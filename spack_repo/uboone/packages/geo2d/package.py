@@ -41,7 +41,7 @@ class Geo2d(Package):
         env.set("GEO2D_PYTHON_VERSION", "3")
         env.set("GEO2D_PYTHON", "python3")
 
-        env.set("OPENCV_INCDIR", join_path(self.spec["opencv"].prefix.include, "opencv4")
+        env.set("OPENCV_INCDIR", join_path(self.spec["opencv"].prefix.include, "opencv4"))
         env.set("OPENCV_LIBDIR", self.spec["opencv"].prefix.lib)
 
         env.prepend_path("PATH", self.spec["root"].prefix.bin)

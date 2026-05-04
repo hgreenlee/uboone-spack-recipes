@@ -73,6 +73,21 @@ class Larcv(Package):
         mkdirp(join_path(self.stage.source_path, "build", "include"))
         env.prepend_path("PATH", join_path(self.stage.source_path, "bin"))
 
+        if os.path.exists(self.spec["py-torch"].prefix.lib64):
+            spack_env.set("LIBTORCH_DIR", join_path(
+                    self.spec["py-torch"].prefix.lib64,
+                    "python%s/site-packages/torch"
+                    % self.spec["python"].version.up_to(2),
+                )
+            )
+        else:
+            spack_env.set("LIBTORCH_DIR", join_path(
+                    self.spec["py-torch"].prefix.lib,
+                    "python%s/site-packages/torch"
+                    % self.spec["python"].version.up_to(2),
+                )
+            )
+
     def build(self, spec, prefix):
         set_executable(join_path(self.stage.source_path, 'configure.sh'))
         configure = Executable('%s/configure.sh' % self.stage.source_path)

@@ -37,6 +37,11 @@ class Larcv(Package):
 
     phases = ("build", "install")
 
+    def patch(self):
+        filter_file('find_package\( Torch \)',
+                'find_package( Torch REQUIRED)',
+                CMakeLists.txt)
+
     def setup_build_environment(self, env):
         env.set("LARCV_BASEDIR", self.stage.source_path)
         env.set("LARCV_BUILDDIR", join_path(self.stage.source_path, "build"))

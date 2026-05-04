@@ -27,7 +27,7 @@ class Larcv(Package):
     depends_on("root", type=("build", "link", "run"))
     depends_on("boost", type=("build", "link", "run"))
     depends_on("eigen", type=("build", "link", "run"))
-    depends_on("opencv@:3+imgproc", type=("build", "link", "run"))
+    depends_on("opencv@:3+imgproc+imgcodes", type=("build", "link", "run"))
     depends_on("geo2d", type=("build", "link", "run"))
     depends_on("py-torch", type=("build", "run"))
     depends_on("py-numpy", type=("build", "run"))

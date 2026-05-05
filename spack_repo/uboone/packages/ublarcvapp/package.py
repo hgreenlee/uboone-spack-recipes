@@ -39,10 +39,12 @@ class Ublarcvapp(CMakePackage):
 
         env.set("LARCV_BASEDIR", larcv_prefix)
         env.set("LARCV_LIBDIR", join_path(larcv_prefix, "build", "lib"))
+        env.prepend_path("CMAKE_PREFIX_PATH", join_path(self.spec["larcv"].prefix, "build", "installed", "lib", "cmake", "larcv"))
 
         env.set("LARLITE_BASEDIR", larlite_prefix)
         env.set("LARLITE_LIBDIR", join_path(larlite_prefix, "lib"))
         env.set("LARLITE_INCDIR", join_path(larlite_prefix, "build", "installed", "include"))
+        env.prepend_path("CMAKE_PREFIX_PATH", join_path(self.spec["larlite"].prefix, "build", "installed", "lib", "cmake", "larlite"))
 
         env.set("GEO2D_BASEDIR", geo2d_prefix)
         env.set("GEO2D_LIBDIR", join_path(geo2d_prefix, "lib"))

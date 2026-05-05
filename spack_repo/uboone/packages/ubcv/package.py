@@ -30,6 +30,7 @@ class Ubcv(CMakePackage, FnalGithubPackage):
     depends_on("larevt", type=("build", "link", "run"))
     depends_on("larlite", type=("build", "link", "run"))
     depends_on("larcv", type=("build", "link", "run"))
+    depends_on("ublarcvapp", type=("build", "link", "run"))
     depends_on("nusimdata", type=("build", "link", "run"))
     depends_on("ubevt", type=("build", "link", "run"))
     depends_on("ubreco", type=("build", "link", "run"))
@@ -54,6 +55,7 @@ class Ubcv(CMakePackage, FnalGithubPackage):
 
     def setup_build_environment(self, env):
         env.set("LARCV_LIBDIR", join_path(self.spec['larcv'].prefix, "build", "installed", "lib"))
+        env.set("LARLITE_LIBDIR", join_path(self.spec['larlite'].prefix, "build", "installed", "lib"))
 
     def url_for_version(self, version):
         return f"https://github.com/uboone/ubcv/archive/refs/tags/v{str(version).replace('.', '_')}.tar.gz"

@@ -85,7 +85,7 @@ class Larcv(Package):
                     % self.spec["python"].version.up_to(2))
                 )
         env.prepend_path("CMAKE_PREFIX_PATH",
-            "{0}/lib/python{1}/site-packages/torch".format(
+            "{0}/lib64/python{1}/site-packages/torch".format(
             self.spec["py-torch"].prefix, self.spec["python"].version.up_to(2)))
         env.prepend_path("CMAKE_PREFIX_PATH",
             "{0}/lib/python{1}/site-packages/torch".format(

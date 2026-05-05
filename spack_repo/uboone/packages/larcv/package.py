@@ -6,6 +6,7 @@ from spack_repo.builtin.build_systems.makefile import MakefilePackage
 
 from spack.package import *
 
+import os
 
 class Larcv(Package):
     """Liquid Argon Computer Vision data format and image processing framework."""
@@ -27,7 +28,7 @@ class Larcv(Package):
     depends_on("root", type=("build", "link", "run"))
     depends_on("boost", type=("build", "link", "run"))
     depends_on("eigen", type=("build", "link", "run"))
-    depends_on("opencv@:3+imgproc+imgcodecs", type=("build", "link", "run"))
+    depends_on("opencv", type=("build", "link", "run"))
     depends_on("geo2d", type=("build", "link", "run"))
     depends_on("py-torch", type=("build", "run"))
     depends_on("py-numpy", type=("build", "run"))
@@ -50,7 +51,7 @@ class Larcv(Package):
         env.set("LARCV_INCDIR", join_path(self.stage.source_path, "build", "include"))
         env.set("LARCV_BINDIR", join_path(self.stage.source_path, "build", "bin"))
 
-        env.set("LARCV_CXX", self.compiler.cxx)
+        env.set("LARCV_CXX", os.path.basename(self.compiler.cxx))
         env.set("LARCV_ROOT6", "1")
         env.set("LARCV_NUMPY", "0")
         env.set("LARCV_OPENCV", "0")
@@ -71,7 +72,6 @@ class Larcv(Package):
         mkdirp(join_path(self.stage.source_path, "build", "bin"))
         mkdirp(join_path(self.stage.source_path, "build", "include"))
         env.prepend_path("PATH", join_path(self.stage.source_path, "bin"))
-        import os
         if os.path.exists(self.spec["py-torch"].prefix.lib64):
             env.set("LIBTORCH_DIR", join_path(
                     self.spec["py-torch"].prefix.lib64,

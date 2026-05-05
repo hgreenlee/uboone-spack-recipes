@@ -2,6 +2,8 @@
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
+import os
+
 from spack_repo.builtin.build_systems.cmake import CMakePackage
 
 from spack.package import *
@@ -35,8 +37,7 @@ class Geo2d(Package):
         env.set("GEO2D_LIBDIR", join_path(self.stage.source_path, "lib"))
         env.set("GEO2D_BINDIR", join_path(self.stage.source_path, "bin"))
         env.set("GEO2D_COREDIR", join_path(self.stage.source_path, "Geo2D", "core"))
-
-        env.set("GEO2D_CXX", "c++")
+        env.set("GEO2D_CXX", os.path.basename(self.compiler.cxx))
         env.set("GEO2D_ROOT6", "1")
         env.set("GEO2D_PYTHON_VERSION", "3")
         env.set("GEO2D_PYTHON", "python3")

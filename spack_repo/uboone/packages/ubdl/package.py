@@ -26,14 +26,14 @@ class Ubdl(MakefilePackage):
     depends_on("root", type=("build", "link", "run"))
     depends_on("boost", type=("build", "link", "run"))
     depends_on("eigen", type=("build", "link", "run"))
-    depends_on("opencv@:3+imgproc+imgcodecs", type=("build", "link", "run"))
+    depends_on("opencv", type=("build", "link", "run"))
     depends_on("py-torch", type=("build", "run"))
     depends_on("py-numpy", type=("build", "run"))
     depends_on("py-scipy", type=("build", "run"))
     depends_on("py-pyyaml", type=("build", "run"))
     depends_on("py-pyzmq", type=("build", "run"))
-    depends_on("larlite", type=("build", "link", "run"))
-    depends_on("larcv", type=("build", "link", "run"))
+    depends_on("larlite@v2_me_06_03b", type=("build", "link", "run"))
+    depends_on("larcv@v2_me_06_03b", type=("build", "link", "run"))
 
     def build(self, spec, prefix):
         set_executable('%s/buildall_fnal.sh' % self.stage.source_path)

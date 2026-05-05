@@ -2,6 +2,8 @@
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
+import os
+
 from spack_repo.builtin.build_systems.makefile import MakefilePackage
 
 from spack.package import *
@@ -11,14 +13,14 @@ from spack_repo.fnal_art.packages.fnal_github_package.package import *
 class Larlite(MakefilePackage):
     """LArLite event data format and lightweight analysis framework."""
 
-    homepage = "https://github.com/uboone/larlite"
-    url = "https://github.com/uboone/larlite/archive/refs/tags/v06_71_00a.tar.gz"
-    git = "https://github.com/uboone/larlite.git"
+    homepage = "https://github.com/NuTufts/larlite"
+    url = "https://github.com/NuTufts/larlite/archive/refs/tags/v06_71_00a.tar.gz"
+    git = "https://github.com/NuTufts/larlite.git"
 
     license("UNKNOWN")
 
     version("trunk", branch="trunk")
-    version("06.71.00a", sha256="0099f77a99941c72b72d0d0fb69984ebbd0e444fa2cc631679a6ab8d0102e4b4")
+    version("v2_me_06_03b", commit="ef74d541a09ba10bfe1fef6a0973b7270fef5dd9")
 
     depends_on("c", type="build")
     depends_on("cxx", type="build")
@@ -26,20 +28,6 @@ class Larlite(MakefilePackage):
     depends_on("python", type=("build", "run"))
     depends_on("root", type=("build", "link", "run"))
 
-    variant(
-        "cxxstd",
-        default="17",
-        values=("14", "17", "20"),
-        multi=False,
-        description="Use the specified C++ standard when building.",
-    )
-
-    @cmake_preset
-    def cmake_args(self):
-        args = [
-            self.define_from_variant("CMAKE_CXX_STANDARD", "cxxstd"),
-        ] 
-        return args
 
     phases = ("build", "install")
 
@@ -52,7 +40,7 @@ class Larlite(MakefilePackage):
         env.set("LARLITE_USERDEVDIR", join_path(base, "UserDev"))
         env.set("USER_MODULE", "")
 
-        env.set("LARLITE_CXX", self.compiler.cxx)
+        env.set("LARLITE_CXX", os.path.basename(self.compiler.cxx))
         env.set("LARLITE_CXXSTDFLAG", "-std=c++%s" % self.spec["root"].variants["cxxstd"].value)
         env.set("LARLITE_ROOT6", "1")
         env.set("ROOTSYS", self.spec["root"].prefix)
@@ -84,4 +72,4 @@ class Larlite(MakefilePackage):
         env.prepend_path("PYTHONPATH", join_path(self.prefix, "python"))
 
     def url_for_version(self, version):
-        return f"https://github.com/uboone/larlite/archive/refs/tags/v{str(version).replace('.', '_')}.tar.gz"
+        return f"https://github.com/NuTufts/larlite/archive/refs/tags/v{str(version).replace('.', '_')}.tar.gz"

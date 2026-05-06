@@ -37,9 +37,6 @@ class Fememulator(Package):
         env.set("SWTRIGGER_ROOT6", "1")
 
     def build(self, spec, prefix):
-        set_executable(join_path(self.stage.source_path, 'configure.sh'))
-        configure = Executable('%s/configure.sh' % self.stage.source_path)
-        configure()
         mkdirp(join_path(self.stage.source_path, 'build'))
         with working_dir(join_path(self.stage.source_path, 'build')):
             cmake = Executable('cmake')

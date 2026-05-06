@@ -35,6 +35,8 @@ class Ubcv(CMakePackage, FnalGithubPackage):
     depends_on("ubevt", type=("build", "link", "run"))
     depends_on("ubreco", type=("build", "link", "run"))
     depends_on("ubsim", type=("build", "link", "run"))
+    depends_on("torch-scatter", type=("build", "link", "run"))
+
 
     variant(
         "cxxstd",

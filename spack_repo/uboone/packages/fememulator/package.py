@@ -24,11 +24,18 @@ class Fememulator(Package):
     depends_on("c", type="build")
     depends_on("cxx", type="build")
     depends_on("root", type=("build", "link", "run"))
-    depends_on("boost", type=("build", "link", "run"))
-    depends_on("larlite", type=("build", "link", "run"))
 
     phases = ("build", "install") 
 
+    variant(
+        "cxxstd",
+        default="17",
+        values=("14", "17", "20"),
+        multi=False,
+        description="Use the specified C++ standard when building.",
+    )
+
+    
     def setup_build_environment(self, env):
         env.set("SWTRIGGER_BUILDDIR", join_path(self.stage.source_path, "build"))
         env.set("SWTRIGGER_INCDIR", self.stage.source_path)
@@ -40,12 +47,18 @@ class Fememulator(Package):
         mkdirp(join_path(self.stage.source_path, 'build'))
         with working_dir(join_path(self.stage.source_path, 'build')):
             cmake = Executable('cmake')
-            cmake('-DCMAKE_INSTALL_PREFIX=%s/build' % prefix, '../' )
+            cmake('-DCMAKE_INSTALL_PREFIX=%s/build' % prefix,  '-DCMAKE_CXX_STANDARD=%s' % spec.variants['cxxstd'].value, '../' )
             make()
 
 
     def install(self, spec, prefix):
         install_tree(self.stage.source_path, prefix)
+
+    def setup_run_environment(self, env):
+        env.set("SWTRIGGER_BASEDIR", self.prefix)
+        env.set("SWTRIGGER_INCDIR", join_path(self.prefix, "build", "include"))
+        env.set("SWTRIGGER_LIBDIR", join_path(self.prefix, "build", "lib"))
+
 
     def url_for_version(self, version):
         return f"https://github.com/uboone/fememulator/archive/refs/tags/v{str(version).replace('.', '_')}.tar.gz"

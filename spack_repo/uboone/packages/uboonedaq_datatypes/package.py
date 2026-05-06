@@ -53,6 +53,11 @@ class UboonedaqDatatypes(CMakePackage, FnalGithubPackage):
         ] 
         return args
 
+    def setup_run_environment(self, env):
+        env.set("UBOONEDAQ_DATATYPES_BASEDIR", self.prefix)
+        env.set("UBOONEDAQ_DATATYPES_INCDIR", join_path(self.prefix, "include"))
+        env.set("UBOONEDAQ_DATATYPES_LIBDIR", join_path(self.prefix, "lib"))
+
 
     def url_for_version(self, version):
         return f"https://github.com/uboone/uboonedaq_datatypes/archive/refs/tags/v{str(version).replace('.', '_')}.tar.gz"

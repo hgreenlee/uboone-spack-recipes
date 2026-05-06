@@ -97,7 +97,7 @@ class Larcv(Package):
         configure()
         with working_dir(join_path(self.stage.source_path, 'build')):
             cmake = Executable('cmake')
-            cmake('-DUSE_PYTHON3=ON', '-DUSE_OPENCV=ON', '-DLARCV_ANN=ON', '-DUSE_TORCH=ON', '-DCMAKE_INSTALL_PREFIX=%s' % prefix, '../' )
+            cmake('-DUSE_PYTHON3=ON', '-DUSE_OPENCV=ON', '-DLARCV_ANN=ON', '-DUSE_TORCH=ON', '-DCMAKE_INSTALL_PREFIX=%s/build/installed' % prefix, '../' )
             make()
             make('install')
 

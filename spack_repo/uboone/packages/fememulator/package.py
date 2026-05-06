@@ -20,7 +20,8 @@ class Fememulator(Package):
     version("develop", branch="master")
     version("02.03.00", sha256="47be2db01c26f7fb0af790bfed674b4b6e79f3b7f84b2b7327692358f3860668")
 
-    depends_on("cmake@2.8:", type="build")
+    depends_on("cmake", type="build")
+    depends_on("gmake", type="build")
     depends_on("c", type="build")
     depends_on("cxx", type="build")
     depends_on("root", type=("build", "link", "run"))
@@ -35,7 +36,7 @@ class Fememulator(Package):
         description="Use the specified C++ standard when building.",
     )
 
-    
+
     def setup_build_environment(self, env):
         env.set("SWTRIGGER_BUILDDIR", join_path(self.stage.source_path, "build"))
         env.set("SWTRIGGER_INCDIR", self.stage.source_path)
